@@ -42,6 +42,6 @@ void delay(int d)
             i--;    // decrement i (e.g. i will equal 99, 98, 97,...)
         }
 
-        d--;    // decrement d
+        d++;    // decrement d
     }
 }
