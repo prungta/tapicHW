@@ -22,10 +22,10 @@ int main()
     while (1){
         PORTBbits.RB4 = 1;  //set high
         //PORTCbits.RC6 = 1;   // set high
-        delay(100);
+        delay(500);
         PORTBbits.RB4 = 0;  //set low
         //PORTCbits.RC6 = 0;   // set low
-        delay(100);
+        delay(1000);
     }
     return 0;
 }

@@ -18,8 +18,11 @@
 int main() {
 
     TRISBbits.TRISB4 = 0; //set LED on B4 as an output
+        INTF = 0;
+        INTE = 1;
+        GIE = 1;
     while(1){
-        
+
     }
     return 0;
 }
@@ -41,10 +44,15 @@ void delay(int d)
 }
 
 void interrupt receivedOne(){
-    if(PORTCbits.RC6 == 1)
+    if(INTF == 1)
     {
+        
         PORTBbits.RB4 = 1;
-        delay(1000);
+        delay(500);
+        INTF = 0;
+     }
+    if(INTF == 0)
+    {
         PORTBbits.RB4 = 0;
     }
 }

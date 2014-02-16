@@ -839,15 +839,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 23: PORTBbits.RB4 = 1;
 "23
 [e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 25: delay(100);
+[; ;main.c: 25: delay(500);
 "25
-[e ( _delay (1 -> 100 `i ]
+[e ( _delay (1 -> 500 `i ]
 [; ;main.c: 26: PORTBbits.RB4 = 0;
 "26
 [e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 28: delay(100);
+[; ;main.c: 28: delay(1000);
 "28
-[e ( _delay (1 -> 100 `i ]
+[e ( _delay (1 -> 1000 `i ]
 "29
 }
 [e :U 82 ]

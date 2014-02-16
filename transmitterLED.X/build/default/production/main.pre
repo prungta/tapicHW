@@ -1136,10 +1136,10 @@ TRISBbits.TRISB4 = 0;
 while (1){
 PORTBbits.RB4 = 1;
 
-delay(100);
+delay(500);
 PORTBbits.RB4 = 0;
 
-delay(100);
+delay(1000);
 }
 return 0;
 }

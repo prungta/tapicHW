@@ -1130,7 +1130,43 @@ extern __nonreentrant void _delay(unsigned long);
 # 18
 int main() {
 
+TRISBbits.TRISB4 = 0;
+INTF = 0;
+INTE = 1;
+GIE = 1;
+while(1){
 
-return 0
+}
+return 0;
+}
+
+void delay(int d)
+{
+int i;
+
+while(d)
+{
+i = 100;
+while(i)
+{
+i--;
+}
+
+d--;
+}
+}
+
+void interrupt receivedOne(){
+if(INTF == 1)
+{
+
+PORTBbits.RB4 = 1;
+delay(500);
+INTF = 0;
+}
+if(INTF == 0)
+{
+PORTBbits.RB4 = 0;
+}
 }
 
