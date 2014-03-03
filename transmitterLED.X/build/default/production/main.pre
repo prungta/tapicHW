@@ -1120,26 +1120,49 @@ extern void flash_erase(unsigned short addr);
 extern __nonreentrant void _delay(unsigned long);
 
 
-# 10 "main.c"
+# 11 "main.c"
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config CP = OFF
 #pragma config BOREN = ON
 #pragma config FOSC = HS
 
-void delay(int d);
 
+
+void delay(int d);
+void adinit();
+unsigned int ADCRead(unsigned char ch);
+unsigned int adc_result;
 int main()
 {
-TRISBbits.TRISB4 = 0;
 
+TRISA = 1;
+TRISB = 0;
+
+
+adinit();
 while (1){
-PORTBbits.RB4 = 1;
-
-delay(500);
 PORTBbits.RB4 = 0;
+PORTBbits.RB2 = 0;
+_delay((unsigned long)((100)*(16000000/4000.0)));
+GO_DONE = 1;
+while(GO_DONE){
+PORTBbits.RB4 = 0;
+PORTBbits.RB2 = 0;
+}
+adc_result = ADRES;
+if(ADRES & 1)
+{
+PORTBbits.RB4 = 1;
+}
+if(!(ADRES & 1))
+{
+PORTBbits.RB2 = 1;
+}
+_delay((unsigned long)((50)*(16000000/4000.0)));
 
-delay(1000);
+
+
 }
 return 0;
 }
@@ -1159,3 +1182,16 @@ i--;
 d--;
 }
 }
+
+void adinit()
+{
+ADCON1 = 0x00;
+CHS2 = 0;
+CHS1 = 0;
+CHS0 = 0;
+ADCS1 = 0;
+ADCS0 = 1;
+ADON = 1;
+
+}
+
